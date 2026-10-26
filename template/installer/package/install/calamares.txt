@@ -1,0 +1,33 @@
+
+
+##
+## # Calamares
+##
+
+
+
+
+##
+## ## Package / Calamares
+##
+
+calamares
+calamares-settings-debian
+
+
+
+
+##
+## ## Package / Archiver
+##
+
+squashfs-tools
+
+
+
+
+##
+## ## Package / Filesystem
+##
+
+e2fsprogs

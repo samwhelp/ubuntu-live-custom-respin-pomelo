@@ -1,0 +1,32 @@
+
+
+##
+## # Policykit
+##
+
+
+
+
+##
+## ## Package / policykit privileges
+##
+
+policykit-desktop-privileges
+
+
+
+
+##
+## ## Package / authentication agent / mate
+##
+
+#mate-polkit
+
+
+
+
+##
+## ## Package / authentication agent / xfce
+##
+
+xfce-polkit

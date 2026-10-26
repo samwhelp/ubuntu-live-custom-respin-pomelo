@@ -1,0 +1,22 @@
+
+
+##
+## # Web Browser
+##
+
+
+
+
+##
+## ## Package / firefox
+##
+
+##
+## ## Notice:
+##
+## Do not install firefox here.
+## Because we blocked snapd.
+## We use hook script to install firefox.
+##
+
+##firefox

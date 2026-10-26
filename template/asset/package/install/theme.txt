@@ -1,0 +1,84 @@
+
+
+##
+## # Theme
+##
+
+
+
+
+##
+## ## Package / Theme / adwaita
+##
+
+adwaita-icon-theme
+
+
+
+
+##
+## ## Package / Theme / breeze
+##
+
+breeze-gtk-theme
+breeze-icon-theme
+breeze-cursor-theme
+xfwm4-theme-breeze
+
+
+
+
+##
+## ## Package / Theme / numix
+##
+
+numix-gtk-theme
+numix-icon-theme
+numix-icon-theme-circle
+
+
+
+
+##
+## ## Package / Theme / arc
+##
+
+arc-theme
+
+
+
+
+##
+## ## Package / Theme / papirus
+##
+
+papirus-icon-theme
+
+
+
+
+##
+## ## Package / Theme / greybird
+##
+
+greybird-gtk-theme
+
+
+
+
+##
+## ## Package / Theme / materia
+##
+
+#materia-gtk-theme
+#materia-kde
+
+
+
+
+##
+## ## Package / Theme / orchis
+##
+
+orchis-gtk-theme
+#orchis-kde

@@ -1,0 +1,59 @@
+
+
+##
+## # Subs / Rundown
+##
+
+
+
+
+##
+## ## Demo
+##
+
+#demo-sub-exec
+
+
+
+
+##
+## ## Coreutils
+##
+
+core-coreutils-from-gnu
+
+
+
+
+##
+## ## Firefox
+##
+
+tool-web-browser-firefox-install
+
+
+
+
+##
+## ## Yt-Dlp
+##
+
+tool-util-yt-dlp-install
+
+
+
+
+##
+## ## Sublime-Text
+##
+
+tool-text-editor-sublime-text-install
+
+
+
+
+##
+## ## Pomelo-Desktop
+##
+
+desktop-pomelo-install
