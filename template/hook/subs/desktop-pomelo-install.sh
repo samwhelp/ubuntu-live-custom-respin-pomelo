@@ -41,25 +41,48 @@ BASE_DIR_PATH="$(dirname "$(realpath "${0}")")"
 ## Module
 ################################################################################
 
+function is_exist_deb_by_dir () {
+
+	local dir_path="${1}"
+	ls "${dir_path}"/*.deb
+
+}
+
 function mod_desktop_pomelo_install () {
 
 	##
 	## ## https://pomelo.fedora.tw/download/pomelo-0.34-ubuntu26.04-amd64.tar.gz
 	##
 
-	local pkg_version="0.34"
-	local pkg_name="pomelo-${pkg_version}-ubuntu26.04-amd64.tar.gz"
-	local pkg_url="https://pomelo.fedora.tw/download/${pkg_name}"
-	local tmp_dir_path="/opt/pomelo/build"
-	local tmp_file_path="${tmp_dir_path}/${pkg_name}"
+	local dist_dir_path="/opt/pomelo/dist"
+	local port_dir_path="/opt/pomelo/port"
+	local tmp_dir_path="/opt/pomelo/tmp"
 
-	local deb_dir_name="pomelo-${pkg_version}-ubuntu26.04"
+	local pkg_archive_version="0.34"
+	local pkg_archive_name="pomelo-${pkg_archive_version}-ubuntu26.04-amd64.tar.gz"
+	local pkg_archive_url="https://pomelo.fedora.tw/download/${pkg_archive_name}"
+	local pkg_archive_file_path="${tmp_dir_path}/${pkg_archive_name}"
+
+	local pkg_extract_dir_name="pomelo-${pkg_archive_version}-ubuntu26.04"
+	local pkg_extract_dir_path="${tmp_dir_path}/${pkg_extract_dir_name}"
+
+
+
+
+	##
+	## ## Preare folder of all debs
+	##
+
+	echo
+	echo "rm -f ${pkg_archive_file_path}"
+	echo
+	rm -f "${pkg_archive_file_path}"
 
 
 	echo
-	echo "rm -f ${tmp_file_path}"
+	echo "rm -rf ${pkg_extract_dir_path}"
 	echo
-	rm -f "${tmp_file_path}"
+	rm -rf "${pkg_extract_dir_path}"
 
 
 	echo
@@ -69,36 +92,89 @@ function mod_desktop_pomelo_install () {
 
 
 	echo
-	echo "wget -c ${pkg_url} -O ${tmp_file_path}"
+	echo "rm -rf ${dist_dir_path}"
 	echo
-	wget -c "${pkg_url}" -O "${tmp_file_path}"
+	rm -rf "${dist_dir_path}"
 
-
-	pushd "${tmp_dir_path}" > /dev/null
+	echo
+	echo "mkdir -p ${dist_dir_path}"
+	echo
+	mkdir -p "${dist_dir_path}"
 
 
 	##
-	## ## Extract
+	## ## Preare all debs
 	##
 
-	echo
-	echo "tar xf ${pkg_name}"
-	echo
-	tar xf "${pkg_name}"
+	if [[ -d "${port_dir_path}" && $(is_exist_deb_by_dir "${port_dir_path}") ]]; then
+
+		##
+		## ## Copy debs to dist_dir_path from port_dir_path
+		##
+
+		echo
+		echo 'cp -f ${port_dir_path}/*.deb ${dist_dir_path}/'
+		echo
+		cp -f "${port_dir_path}"/*.deb "${dist_dir_path}"/
+
+	else
+
+		##
+		## ## Download debs archive
+		##
+
+		echo
+		echo "wget -c ${pkg_archive_url} -O ${pkg_archive_file_path}"
+		echo
+		wget -c "${pkg_archive_url}" -O "${pkg_archive_file_path}"
 
 
-		pushd "${deb_dir_name}" > /dev/null
+		##
+		## ## Extract debs archive
+		##
 
-			##
-			## ## Install
-			##
-
-			apt install ./*.deb || true
-
-		popd
+		echo
+		echo "tar xf ${pkg_archive_file_path}" -C "${tmp_dir_path}"
+		echo
+		tar xf "${pkg_archive_file_path}" -C "${tmp_dir_path}"
 
 
-	popd > /dev/null
+		##
+		## ## Copy debs to dist_dir_path from pkg_extract_dir_path
+		##
+
+		echo
+		echo 'cp -f ${pkg_extract_dir_path}/*.deb ${dist_dir_path}/'
+		echo
+		cp -f "${pkg_extract_dir_path}"/*.deb "${dist_dir_path}"/
+
+
+	fi
+
+
+
+
+	##
+	## ## Install all debs
+	##
+
+	pushd "${dist_dir_path}" > /dev/null
+
+		##
+		## ## Install
+		##
+
+		echo
+		echo "##"
+		echo "## ## Install all debs about pomelo"
+		echo "##"
+		echo
+
+		apt install ./*.deb || true
+
+	popd
+
+
 
 
 	return 0
